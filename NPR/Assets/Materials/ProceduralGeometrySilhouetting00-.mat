@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ProceduralGeometrySilhouetting01
-  m_Shader: {fileID: 4800000, guid: cf211f4aa4093fc43b4d0772b63f1a71, type: 3}
+  m_Name: ProceduralGeometrySilhouetting00-
+  m_Shader: {fileID: 4800000, guid: 7431686a7abe2c548aac0cfee12b97cb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -65,9 +65,7 @@ Material:
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
-    - _NormalZ: -0.07
     - _OcclusionStrength: 1
-    - _Outline: 0.1
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
@@ -77,4 +75,3 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _OutlineColor: {r: 0.5, g: 0.5, b: 0, a: 1}

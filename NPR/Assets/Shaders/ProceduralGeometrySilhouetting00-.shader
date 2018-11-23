@@ -1,10 +1,10 @@
-﻿Shader "Custom/ProceduralGeometrySilhouetting00" {
+﻿Shader "Custom/ProceduralGeometrySilhouetting00-" {
     SubShader {
 		Tags { "RenderType"="Opaque" "Queue"="Geometry"}
 		
 		Pass {
-			// Cull Back
-            Cull Front
+			Cull Back
+            // Cull Front
 			
 			CGPROGRAM
 			
