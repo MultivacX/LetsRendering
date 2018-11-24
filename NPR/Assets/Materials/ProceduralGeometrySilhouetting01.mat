@@ -67,7 +67,7 @@ Material:
     - _Mode: 0
     - _NormalZ: 0
     - _OcclusionStrength: 1
-    - _Outline: 0.026
+    - _Outline: 0.021
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
