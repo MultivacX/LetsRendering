@@ -1,8 +1,8 @@
-﻿Shader "Custom/LambertDiffusePerVertex" {
+﻿Shader "Custom/BandedPerVertex" {
     Properties {
-        [Header(Diffuse)]
         _Color ("Color", Color) = (1,1,1,1)
         _DiffuseLightAttenuation ("Diffuse Light Attenuation", Range(0, 1)) = 1.0
+		_LightSteps ("Banded Light Steps", Range(1, 256)) = 1.0
     }
     SubShader {
         Pass { 
@@ -18,6 +18,7 @@
 			
 			fixed4 _Color;
             float _DiffuseLightAttenuation;
+			float _LightSteps;
 			
 			struct a2v {
 				float4 vertex : POSITION;
@@ -42,12 +43,13 @@
 				// Get the light direction in world space
 				fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
 				// Compute diffuse term
-                fixed3 diffuse = LambertDiffuseLighting (
-                    _Color.rgb, // objects color
-                    _LightColor0.rgb, // lights color * intensity
-                    _DiffuseLightAttenuation, // value of light at point (shadow/falloff)
-                    worldNormal,
-                    worldLight);
+				fixed3 diffuse = BandedLighting (
+					_LightSteps,
+					_LightColor0.rgb,
+					_Color.rgb,
+					_DiffuseLightAttenuation,
+					worldNormal,
+					worldLight);
 				
 				o.color = ambient + diffuse;
 				

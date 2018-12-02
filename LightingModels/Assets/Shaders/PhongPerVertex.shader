@@ -1,8 +1,14 @@
-﻿Shader "Custom/LambertDiffusePerVertex" {
+﻿Shader "Custom/PhongPerVertex" {
     Properties {
         [Header(Diffuse)]
         _Color ("Color", Color) = (1,1,1,1)
         _DiffuseLightAttenuation ("Diffuse Light Attenuation", Range(0, 1)) = 1.0
+		_DiffuseWarpValue ("Diffuse Warp Value", Range(0.5, 1)) = 0.5
+		_DiffuseExponent ("Diffuse Exponent", Range(1, 2)) = 1.0
+
+		[Header(Specular)]
+		_SpecularColor ("Specular Color", Color) = (1,1,1,1)
+		_SpecularGloss ("Specular Gloss", Range(8.0, 256)) = 20
     }
     SubShader {
         Pass { 
@@ -18,6 +24,11 @@
 			
 			fixed4 _Color;
             float _DiffuseLightAttenuation;
+			float _DiffuseWarpValue;
+			float _DiffuseExponent;
+
+			fixed4 _SpecularColor;
+            float _SpecularGloss;
 			
 			struct a2v {
 				float4 vertex : POSITION;
@@ -48,8 +59,18 @@
                     _DiffuseLightAttenuation, // value of light at point (shadow/falloff)
                     worldNormal,
                     worldLight);
+
+				// Compute specular term
+				fixed3 specular = PhongSpecularLighting (
+                    _Color.rgb,
+					_SpecularColor,
+					_SpecularGloss,
+					worldLight, 
+    				worldNormal, 
+    				mul(unity_ObjectToWorld, v.vertex).xyz, 
+    				_WorldSpaceCameraPos.xyz);
 				
-				o.color = ambient + diffuse;
+				o.color = ambient + diffuse + specular;
 				
 				return o;
 			}

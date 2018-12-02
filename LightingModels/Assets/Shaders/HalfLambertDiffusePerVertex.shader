@@ -1,8 +1,10 @@
-﻿Shader "Custom/LambertDiffusePerVertex" {
+﻿Shader "Custom/HalfLambertDiffusePerVertex" {
     Properties {
         [Header(Diffuse)]
         _Color ("Color", Color) = (1,1,1,1)
         _DiffuseLightAttenuation ("Diffuse Light Attenuation", Range(0, 1)) = 1.0
+		_DiffuseWarpValue ("Diffuse Warp Value", Range(0.5, 1)) = 0.5
+		_DiffuseExponent ("Diffuse Exponent", Range(1, 2)) = 1.0
     }
     SubShader {
         Pass { 
@@ -18,6 +20,8 @@
 			
 			fixed4 _Color;
             float _DiffuseLightAttenuation;
+			float _DiffuseWarpValue;
+			float _DiffuseExponent;
 			
 			struct a2v {
 				float4 vertex : POSITION;
@@ -42,10 +46,12 @@
 				// Get the light direction in world space
 				fixed3 worldLight = normalize(_WorldSpaceLightPos0.xyz);
 				// Compute diffuse term
-                fixed3 diffuse = LambertDiffuseLighting (
+                fixed3 diffuse = HalfLambertDiffuseLighting (
                     _Color.rgb, // objects color
                     _LightColor0.rgb, // lights color * intensity
                     _DiffuseLightAttenuation, // value of light at point (shadow/falloff)
+					_DiffuseWarpValue,
+					_DiffuseExponent,
                     worldNormal,
                     worldLight);
 				
