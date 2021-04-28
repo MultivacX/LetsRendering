@@ -75,18 +75,19 @@ func random_in_unit_sphere() -> SIMD3<Float> {
     } while dot(p, p) >= 1.0
     return p
     
-    // r = 1, theta, phi
+    // r = [0, 1), theta, phi
     // x = r * sin(t) * cos(p)
     // y = r * sin(t) * sin(p)
     // z = r * cos(t)
+//    let r = drand48()
 //    let t = drand48()
 //    let p = drand48()
 //    let sin_t = sin(Double.pi * 2.0 * t)
 //    let cos_t = sin(Double.pi * 2.0 * t)
 //    let sin_p = sin(Double.pi * 2.0 * p)
 //    let cos_p = sin(Double.pi * 2.0 * p)
-//    let x = Float(drand48() * 2.0 - 1.0 + sin_t * cos_p)
-//    let y = Float(drand48() * 2.0 - 1.0 + sin_t * sin_p)
-//    let z = Float(drand48() * 2.0 - 1.0 + cos_t)
+//    let x = Float(r + sin_t * cos_p)
+//    let y = Float(r + sin_t * sin_p)
+//    let z = Float(r + cos_t)
 //    return SIMD3<Float>(x: x, y: y, z: z)
 }
